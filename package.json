@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/Moto42/project_pile/issues"
   },
-  "homepage": "https://github.com/Moto42/project_pile#readme"
+  "homepage": "https://github.com/Moto42/project_pile#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "highlight.js": "^10.3.2"
+  }
 }
