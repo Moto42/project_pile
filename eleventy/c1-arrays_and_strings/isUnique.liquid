@@ -3,17 +3,9 @@ layout: project
 title: "isUnique"
 ---
 
-<div class="project__explination twoColumn__block">
-  <h1>isUnique</h1>
-  Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
-</div>
-<div class="project__test_results twoColumn__block">
-  <h2>test results</h2>
-</div>
-<div class="project__code twoColumn__block">
-  {{ "eleventy\scripts\c1-arrays_and_strings\isUnique.js" | prettycode }}
-</div>
-<div class="project__tests twoColumn__block">
-  {{ "eleventy\scripts\c1-arrays_and_strings\isUnique.test.js" | prettycode }}
-</div>
-
+{% include project with{
+  project_name : 'isUnique',
+  description : 'Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?',
+  code_file : 'eleventy\scripts\c1-arrays_and_strings\isUnique.js',
+  test_file : 'eleventy\scripts\c1-arrays_and_strings\isUnique.test.js' 
+} %}
