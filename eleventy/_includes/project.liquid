@@ -6,17 +6,20 @@
     code_file
     test_file
 {%- endcomment -%}
-<div class="project__explination twoColumn__block">
-  <h1>{{project_name}}</h1>
-  {{description}}
-</div>
-<div class="project__test_results twoColumn__block">
-  <h2>test results</h2>
-  {%- comment -%}TODO: TEST RESULTS INCLUDE GOES HERE{%- endcomment -%}
-</div>
-<div class="project__code twoColumn__block">
-  {{ code_file | prettycode }}
-</div>
-<div class="project__tests twoColumn__block">
-  {{ test_file | prettycode }}
+<link rel="stylesheet" href="/css/prettycode.min.css">
+<div class="project twoColumn">
+  <div class="project__explination twoColumn__block">
+    <h1>{{project_name}}</h1>
+    {{description}}
+  </div>
+  <div class="project__test_results twoColumn__block">
+    <h2>test results</h2>
+    {%- comment -%}TODO: TEST RESULTS INCLUDE GOES HERE{%- endcomment -%}
+  </div>
+  <div class="project__code twoColumn__block">
+    {{ code_file | prettycode }}
+  </div>
+  <div class="project__tests twoColumn__block">
+    {{ test_file | prettycode }}
+  </div>
 </div>
