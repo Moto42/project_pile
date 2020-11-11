@@ -7,6 +7,27 @@ filters.prettycode = function(input) {
   const highlighted = highlight.highlightAuto(code).value;
   return "<pre>"+highlighted+"</pre>";
 }
+/**
+ * 
+ * @param {String} folder path to folder to build TOC for.
+ * @returns {String} HTML details node describing the folder and it's contents.
+ */
+filters.toc = function(folder) {
+  console.log(folder)
+  const contents = fs.readdirSync(folder);
+  const subdirectories = contents.filter(file => fs.statSync(folder+'/'+file).isDirectory());
+  const files = contents.filter(file => fs.statSync(folder+'/'+file).isFile());
+  const directoryName = folder.slice(folder.lastIndexOf('/'));
+  let output = `${directoryName}<ul>\n`;
+  subdirectories.forEach(subDir => {
+    output += `<li>${filters.toc(folder+'/'+subDir)}</li>\n`;
+  });
+  files.forEach(file => {
+    output += `<li>${file}</li>`;
+  });
+  output += '</ul>'
+  return output;
+}
 
 const configObject = {
   dir: {
@@ -19,6 +40,7 @@ const configObject = {
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("prettycode", filters.prettycode);
+  eleventyConfig.addFilter("toc", filters.toc);
   eleventyConfig.setBrowserSyncConfig({
     server: "docs",
   });
