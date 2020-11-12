@@ -18,12 +18,14 @@ filters.toc = function(folder) {
   const subdirectories = contents.filter(file => fs.statSync(folder+'/'+file).isDirectory());
   const files = contents.filter(file => fs.statSync(folder+'/'+file).isFile());
   const directoryName = folder.slice(folder.lastIndexOf('/'));
+  const directoryPath = folder.replace('eleventy','');
   let output = `${directoryName}<ul>\n`;
   subdirectories.forEach(subDir => {
     output += `<li>${filters.toc(folder+'/'+subDir)}</li>\n`;
   });
   files.forEach(file => {
-    output += `<li>${file}</li>`;
+    const fileName = file.slice(0,file.indexOf('.'));
+    output += `<li><a href="${directoryPath}/${fileName}">${fileName}</a></li>`;
   });
   output += '</ul>'
   return output;
@@ -44,5 +46,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({
     server: "docs",
   });
+  eleventyConfig.addPassthroughCopy("eleventy/css");
+  eleventyConfig.addPassthroughCopy("eleventy/scripts");
   return configObject;
 }
