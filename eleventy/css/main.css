@@ -1,0 +1,10 @@
+.twoColumn {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.twoColumn__block {
+  flex-basis: 50%;
+  flex-grow: 1;
+  background-color: beige;
+}
